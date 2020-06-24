@@ -48,14 +48,7 @@ html {
 				justify-content: center;
 				position: relative;
 			}
-
-			.wrapperwinter {
-				background: url("#");
-				background-size: cover;
-				width: 100%;
-				position: relative;
-
-			}
+			
 			header {
 				background: rgba(0,0,0,0.7);
 				width: 100%;
