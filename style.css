@@ -46,6 +46,15 @@ html {
 				border-radius: 30px;
 				display: flex;
 				justify-content: center;
+				position: relative;
+			}
+
+			.wrapperwinter {
+				background: url("#");
+				background-size: cover;
+				width: 100%;
+				position: relative;
+
 			}
 			header {
 				background: rgba(0,0,0,0.7);
@@ -181,7 +190,8 @@ html {
 					
 				}
 			}
-				
+				/* НАВИГАЦИЯ */
+
 				nav {
 				  padding: 0;
 				  min-width: 500px;
@@ -271,32 +281,8 @@ html {
 						border: 1px solid gold;
 						margin-top: 15px;
 						position: relative;
-						z-index: 2;
 						padding-top: -1px;
 						transition-duration: 1s;
-
-					}
-
-					.imageofmehelmet {
-						width: 35%;
-						border-radius: 50%;
-						border: 1px solid gold;
-						position: absolute;
-						margin-top: 10px;
-						top: 6px;
-						z-index: 1;
-
-
-					}
-
-						.imageofme:hover {
-						width: 35%;
-						border-radius: 50%;
-						border: 1px solid gold;
-						margin-top: 15px;
-						position: relative;
-						z-index: 2;
-						opacity: 0%;
 
 					}
 
