@@ -1,40 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <title>Konstantin Boltyshev — Frontend Developer</title>
+    <meta name="description" content="Портфолио Константина Болтышева — фронтенд-разработчика. Адаптивная и кросс-браузерная вёрстка по макетам любой сложности: HTML, CSS, JavaScript, SCSS, Figma.">
+    <meta name="keywords" content="Константин Болтышев, фронтенд, frontend developer, вёрстка, HTML, CSS, JavaScript, SCSS, портфолио">
+    <meta name="author" content="Konstantin Boltyshev">
+    <meta name="theme-color" content="#141414">
+
+    <!-- Open Graph / Twitter -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Konstantin Boltyshev — Frontend Developer">
+    <meta property="og:description" content="Портфолио фронтенд-разработчика: адаптивная и кросс-браузерная вёрстка, HTML/CSS/JS/SCSS, Figma.">
+    <meta property="og:url" content="https://chazybvk.github.io/Portfolio/">
+    <meta property="og:image" content="https://chazybvk.github.io/Portfolio/og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Konstantin Boltyshev — Frontend Developer">
+    <meta name="twitter:description" content="Портфолио фронтенд-разработчика: адаптивная и кросс-браузерная вёрстка.">
+    <meta name="twitter:image" content="https://chazybvk.github.io/Portfolio/og.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.min.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/enhance.css">
 </head>
-    <body class="emerge" data-spin="true">
+    <body>
+
+    <!-- UI overlays -->
+    <div id="preloader">
+        <div class="preloader-ring"></div>
+        <div class="preloader-name">Boltyshev</div>
+    </div>
+    <div id="scroll-progress"></div>
+    <div id="cursor-glow"></div>
+    <nav id="nav-dots" aria-label="Навигация по секциям"></nav>
+    <button id="to-top" type="button" aria-label="Наверх">&#8593;</button>
+
         <!-- Обложка общая -->
     <div class="wrapper">
         <!-- Первая секция -->
     <section class="firstSection allsections">
         <!-- Оболочка контента -->
         <div class="parallaxBody">
-                <img class="birds birds1" src="images/birds.gif">
-                <img class="birds birds2" src="images/birds.gif">
-                <img class="birds birds3" src="images/birds.gif">
-                <img class="birds birds4" src="images/birds.gif">
-                <img class="birds birds5" src="images/birds.gif">
-                <img class="birds birds6" src="images/birds.gif">
+                <img class="birds birds1" src="images/birds.gif" alt="">
+                <img class="birds birds2" src="images/birds.gif" alt="">
+                <img class="birds birds3" src="images/birds.gif" alt="">
+                <img class="birds birds4" src="images/birds.gif" alt="">
+                <img class="birds birds5" src="images/birds.gif" alt="">
+                <img class="birds birds6" src="images/birds.gif" alt="">
             <div class="parallaxContainer">
                 <div class="justText text1 _anim-items"><p>Konstantin</p></div>
                 <div class="justText text2 _anim-items"><p>Boltyshev</p></div>
-            </div>	
+            </div>
                     <div class="parallaxForest parallaxItem" data-speed="0.05"></div>
                     <div class="parallaxMountains parallaxItem" data-speed="0.03"></div>
         </div>
-    
+
         <!-- Оболочка контента конец -->
-        
+
         <!-- Первая секция конец -->
     </section>
-    
+
         <!-- Вторая секция -->
     <section class="secondSection allsections">
         <div class="wrapperWrapper">
@@ -60,11 +92,11 @@
         </div>
         <!-- Оболочка контента -->
         <div class="content">
-    
+
             <div class="secondText titleText _anim-items">
-                <p>Протфолио Junior front-end</p>
+                <p>Портфолио · Frontend Developer</p>
             </div>
-    
+
             <div class="secondPageRow">
         <!-- Блок -->
                 <div class="aboutMe _anim-items">
@@ -72,11 +104,11 @@
                         <p>обо мне</p>
                     </div>
                     <div class="aboutPhoto">
-                        <img class="me" src="images/me2.jpg">
+                        <img class="me" src="images/me2.jpg" alt="Константин Болтышев">
                     </div>
-    
+
                     <div class="aboutText">
-                        <p>Привет! Меня зовут Константин, мне 28 лет и я активно учусь и занимаюсь Web-разработкой, адаптивной и кросс-браузреной версткой (в том числе и по макету любой сложности)</p>
+                        <p>Привет! Меня зовут Константин, и я активно занимаюсь Web-разработкой: адаптивной и кросс-браузерной вёрсткой, в том числе по макету любой сложности.</p>
                     </div>
                 </div>
         <!-- Блок -->
@@ -91,9 +123,10 @@
                         <div class="image"></div>
                     </div>
                     <div class="aboutText">
-                        <p>Некоторые из имеющихся, собранных на данный момент. Серитификаты являются подтверждением владения элементарными и продвинутыми умениями в данной дисциплине</p>
+                        <p>Некоторые из собранных на данный момент. Сертификаты подтверждают владение базовыми и продвинутыми навыками в данной дисциплине.</p>
                     </div>
                 </div>
+            </div>
         <!-- Оболочка контента конец -->
         </div>
         <!-- Вторая секция конец -->
@@ -107,66 +140,37 @@
             <div class="secondText titleText _anim-items">
                 <p>Примеры работ</p>
             </div>
-    
+
     <div class="thirdPageRow">
         <div class="examples _anim-items">
-            <!-- Слайдер -->		
+            <!-- Слайдер -->
         <div class="slider">
-            <button class="previous btn">&#10094;</button>
-            <button class="next btn">&#10095;</button>
-    
-            <div class="sliderScene">
-                <a class="sliderImage firstSlide" href="https://chazybvk.github.io/CalculatorJS/" target="_blank">
-                </a>
-                <a class="sliderImage secondSlide" href="https://chazybvk.github.io/Portfolio-Claret/" target="_blank">
-                </a>
-                <a class="sliderImage thirdSlide" href="https://chazybvk.github.io/Example-for-skillfactory/" target="_blank">
-                </a>
-                <a class="sliderImage fourthSlide" href="https://chazybvk.github.io/EMAAR-test/" target="_blank">
-                </a>
-            </div>
+            <button class="previous btn" aria-label="Предыдущая работа">&#10094;</button>
+            <button class="next btn" aria-label="Следующая работа">&#10095;</button>
+
+            <div class="sliderScene" id="sliderScene"></div>
         </div>
     <!-- Слайдер -->
-    
+
     </div>
-    
+
     <div class="examplesDescription _anim-items">
-        <div class="aboutText titleText descrTitleSecond">
-            <p>Ресторан высокой кухни</p>
+        <div class="aboutText titleText" id="projTitle"><p></p></div>
+        <div class="aboutText" id="projText"><p></p></div>
+        <div class="projMeta">
+            <span id="projCounter"></span>
+            <a id="projLink" class="projLink" href="#" target="_blank" rel="noopener">Открыть сайт &#8599;</a>
         </div>
-        <div class="aboutText descrTextSecond">
-            <p>Лендинг, сделанный для ресторана высокой кухни Claret Cafe в центре Санкт-Петербурга. Ресторан работает при пятизвездочном отеле "Гельвеция" и являлся первой коммерческой работой.</p>
-        </div>
-            <div class="aboutText titleText descrTitleFirst">
-            <p>calculator test</p>
-        </div>
-        <div class="aboutText descrTextFirst">
-            <p>Многие компании при приеме на работу предлагают выполнить простое задание - несложный <span>UI</span> и программирование калькулятора на движке браузера.</p>
-        </div>
-            <div class="aboutText titleText descrTitleThird">
-            <p>Верстка по макету из Figma</p>
-        </div>
-        <div class="aboutText descrTextThird">
-            <p>Простая верстка по макету, взятому из Figma. Конкретно данный пример предполагал только 2 варианта адаптивности - полноэкранная и мобильная версия.</p>
-        </div>
-            <div class="aboutText titleText descrTitleFourth">
-            <p>Тестовое задание EMAAR</p>
-        </div>
-        <div class="aboutText descrTextFourth">
-            <p>Тестовое задание на позицию верстальщика. Предусмотрен полный адаптив для любого типа экрана, а так же мобильная версия</p>
-        </div>
-    
-    
     </div>
-    
+
     </div>
-    
+
     <!-- контент конец -->
         </div>
     <!-- Третья секция конец -->
-    </div>	
+    </div>
     </section>
-    
+
     <!-- Четвертая секция -->
     <section class="thirdSection allsections">
         <div class="wrapperWrapper">
@@ -191,13 +195,41 @@
         </div>
 
         <div class="contentbox">
-        
+
+        <div class="content expBlock">
+
+            <div class="secondText titleText _anim-items">
+                <p>Опыт работы</p>
+            </div>
+            <div class="expSub _anim-items"><p>Более 4 лет коммерческой разработки</p></div>
+
+            <div class="timeline _anim-items">
+                <div class="tl-item">
+                    <div class="tl-head">
+                        <span class="tl-role">HTML-верстальщик</span>
+                        <span class="tl-date">Июль 2023 — н.в.</span>
+                    </div>
+                    <div class="tl-company">ONKRON</div>
+                    <p class="tl-desc">Вёрстка макетов (HTML, CSS, JavaScript, PHP), оптимизация скорости загрузки интернет-магазина на Shopify, контент-менеджмент.</p>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-head">
+                        <span class="tl-role">HTML-Developer · middle</span>
+                        <span class="tl-date">Сентябрь 2025 — Июль 2026</span>
+                    </div>
+                    <div class="tl-company">AdChampagne</div>
+                    <p class="tl-desc">Потоковая разработка и адаптация большого объёма лендингов с различными сценариями (воронками), подключение форм обратной связи, настройка передаваемых параметров.</p>
+                </div>
+            </div>
+
+        </div>
+
         <div class="content">
-            
+
             <div class="secondText titleText _anim-items">
                 <p>Hard and soft skills</p>
             </div>
-    
+
         <div class="fourthPageRow _anim-items">
 
             <div class="fourthPageColumn">
@@ -220,7 +252,7 @@
                     <li><p>Работа в команде</p></li>
                     <li><p>Стрессоустойчивость</p></li>
                     <li><p>Внимательность</p></li>
-                    <li><p>Отвественность</p></li>
+                    <li><p>Ответственность</p></li>
                     <li><p>Результативность</p></li>
                 </ul>
             </div>
@@ -243,20 +275,19 @@
             </ul>
         </div>
     </div>
-    
+
     <!-- контент конец -->
-        
+
         </div>
-    
+
     <!-- Четвертая секция конец -->
 </section>
-    
-    
-    
+
+
+
         <!-- Обложка общая конец -->
     </div>
-    </body>
 
-    <script src="js/main.min.js"></script>
-</body>
+    <script src="js/main.js" defer></script>
+    </body>
 </html>
