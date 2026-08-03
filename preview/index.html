@@ -703,7 +703,7 @@ document.querySelectorAll("#hot .spot").forEach(function(s){var l=s.querySelecto
 (function(){
   var about=document.getElementById("about"),room=document.getElementById("room"),
       layer=document.getElementById("roomLayer"),bg=document.querySelector(".room-bg"),
-      dim=document.querySelector(".room-dim");
+      dim=document.querySelector(".room-dim"),fog=document.getElementById("seamFog");
   if(!about||!room||!layer)return;
   var p=0,cp=0;
   function calc(){
@@ -720,8 +720,13 @@ document.querySelectorAll("#hot .spot").forEach(function(s){var l=s.querySelecto
     about.style.transform="translate3d(0,"+(-cp*26).toFixed(2)+"vh,0)";
     about.style.filter="brightness("+(1-cp*0.35).toFixed(3)+")";
     if(bg) bg.style.transform="scale(1.04) translate3d(0,"+((1-cp)*6).toFixed(2)+"vh,0)";
+    var seamRaw=about.getBoundingClientRect().bottom, vh2=innerHeight, t=seamRaw/vh2;
+    if(fog){ /* дымка нужна только когда стык рядом с экраном */
+      var op=Math.max(0,Math.min(1,Math.min((1.18-t)/0.22,(t+0.30)/0.22)));
+      fog.style.opacity=op.toFixed(3);
+    }
     if(dim){
-      var seam=Math.max(0,Math.min(innerHeight,about.getBoundingClientRect().bottom));
+      var seam=Math.max(0,Math.min(vh2,seamRaw));
       dim.style.background=
         "radial-gradient(120% 90% at 50% 45%,rgba(6,4,10,.24) 22%,rgba(6,4,10,.58) 72%,rgba(6,4,10,.84) 100%),"+
         "linear-gradient(180deg,rgba(6,4,10,1) 0px,rgba(6,4,10,1) "+(seam-10)+"px,"+
