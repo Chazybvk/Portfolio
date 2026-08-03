@@ -12,7 +12,7 @@
 <style>
 :root{--cyan:#6fe6ff;--pink:#ff6fce;--amber:#ffc575;--warm:#ffe0b0;--cream:#f7ecd6;--ink:#0b0810}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:"Chakra Petch",sans-serif;background:#0b0810;color:#f3e9d8;overflow-x:hidden;cursor:default}
 ::selection{background:var(--pink);color:#12060f}
 a{color:inherit;text-decoration:none}
@@ -188,8 +188,8 @@ a{color:inherit;text-decoration:none}
 @keyframes lensGlow{0%,100%{box-shadow:0 0 18px 6px rgba(110,235,255,.75),0 0 46px 14px rgba(110,235,255,.35)}
   50%{box-shadow:0 0 26px 9px rgba(160,245,255,.95),0 0 70px 22px rgba(110,235,255,.5)}}
 
-#about{display:block;padding:10vh 0 27vh}
-.stage{max-width:1600px;margin:0 auto;padding:0 clamp(22px,3.4vw,64px);position:relative;z-index:2;perspective:1700px;perspective-origin:50% 130%}
+#about{display:block;padding:10vh 0 27vh;overflow-x:clip}
+.stage{max-width:1600px;margin:0 auto;padding:0 clamp(22px,3.4vw,64px);position:relative;z-index:2;perspective:1700px;perspective-origin:50% 130%;--gap:clamp(120px,15vh,220px)}
 
 /* --- рама голограммы --- */
 .hframe{position:relative;padding:86px 58px 76px;transform-style:preserve-3d;
@@ -236,7 +236,7 @@ a{color:inherit;text-decoration:none}
 @keyframes bDust{0%{transform:translateY(0)}100%{transform:translateY(-50%)}}
 @keyframes bHot{0%,100%{opacity:.7;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.1)}}
 
-.beam{position:absolute;left:50%;bottom:calc(2.2vh + 30px);width:min(470px,42vw);height:21vh;
+.beam{position:absolute;left:50%;top:calc(100% - 2px);width:min(470px,42vw);height:var(--gap);
   transform:translateX(-50%);z-index:1;pointer-events:none;mix-blend-mode:screen;overflow:hidden;
   --cone:polygon(50% 100%,4% 0,96% 0)}
 .b-cone{position:absolute;inset:0;clip-path:var(--cone);
@@ -254,15 +254,15 @@ a{color:inherit;text-decoration:none}
                    radial-gradient(1.4px 1.4px at 40% 80%,rgba(215,250,255,.8),transparent 62%);
   animation:bDust 12s linear infinite}
 /* засветка у линзы и лужа света на столе — отдельными слоями, вне конуса */
-.b-hot{position:absolute;left:50%;bottom:calc(2.2vh + 22px);width:120px;height:46px;transform:translateX(-50%);
+.b-hot{position:absolute;left:50%;top:calc(100% + var(--gap) - 24px);width:120px;height:46px;transform:translateX(-50%);
   border-radius:50%;z-index:1;pointer-events:none;mix-blend-mode:screen;
   background:radial-gradient(50% 50% at 50% 50%,rgba(240,255,255,.85),rgba(150,242,255,.3) 46%,transparent 74%);
   filter:blur(7px)}
-.b-pool{position:absolute;left:50%;bottom:-1vh;width:min(520px,46vw);height:9vh;transform:translateX(-50%);
+.b-pool{position:absolute;left:50%;top:calc(100% + var(--gap) + 6px);width:min(520px,46vw);height:9vh;transform:translateX(-50%);
   z-index:0;pointer-events:none;mix-blend-mode:screen;
   background:radial-gradient(50% 50% at 50% 50%,rgba(125,238,255,.2),transparent 74%);
   filter:blur(18px)}
-.proj{position:absolute;left:50%;bottom:2.2vh;transform:translateX(-50%);z-index:2;pointer-events:none;
+.proj{position:absolute;left:50%;top:calc(100% + var(--gap) - 6px);transform:translateX(-50%);z-index:2;pointer-events:none;
   width:132px;height:38px;
   background:linear-gradient(180deg,#2a3746,#141d28 55%,#0b1119);
   clip-path:polygon(12% 0,88% 0,100% 34%,100% 100%,0 100%,0 34%);
@@ -274,6 +274,11 @@ a{color:inherit;text-decoration:none}
 .proj .cord{position:absolute;bottom:2px;width:38px;height:8px;border:2px solid #0e1620;border-top:0;border-radius:0 0 10px 10px}
 .proj .cord.c1{left:-30px}.proj .cord.c2{right:-30px}
 
+@media(hover:none),(pointer:coarse){
+  .hframe{transform:none!important}
+  #cursor{display:none}
+  .stage{perspective:none;--gap:clamp(80px,11vh,140px)}
+}
 @media(max-width:900px){
   #about{padding:12vh 0 24vh}
   .hframe{padding:58px 20px 48px}
@@ -359,7 +364,7 @@ a{color:inherit;text-decoration:none}
 
 
 /* ================= SLIDE 3: интерьер ================= */
-#seamFog{position:absolute;left:-6vw;right:-6vw;bottom:-30vh;height:60vh;z-index:30;pointer-events:none;
+#seamFog{position:absolute;left:0;right:0;bottom:-30vh;height:60vh;z-index:30;pointer-events:none;
   background:linear-gradient(180deg,
     rgba(6,4,10,0) 0%,rgba(6,4,10,.30) 18%,rgba(6,4,10,.72) 32%,
     rgba(6,4,10,.96) 44%,rgba(6,4,10,.99) 50%,rgba(6,4,10,.96) 56%,
@@ -373,7 +378,7 @@ a{color:inherit;text-decoration:none}
   background:radial-gradient(120% 90% at 50% 45%,rgba(6,4,10,.30) 25%,rgba(6,4,10,.62) 72%,rgba(6,4,10,.86) 100%),
              linear-gradient(180deg,rgba(6,4,10,.75) 0%,rgba(6,4,10,.35) 26%,rgba(6,4,10,.55) 100%)}
 #roomFx{position:absolute;inset:0;width:100%;height:100%}
-#room{position:relative;z-index:4;min-height:100vh;background:transparent}
+#room{position:relative;z-index:4;min-height:100vh;background:transparent;overflow-x:clip}
 .room-hold{height:100vh}
 /* «стол» уезжает вверх, открывая комнату */
 #about{will-change:transform}
@@ -386,9 +391,9 @@ a{color:inherit;text-decoration:none}
 #room .hf-tag.lt{letter-spacing:.2em}
 
 /* устройство и луч — сверху вниз */
-#room .proj{top:6.5vh;bottom:auto;transform:translateX(-50%) rotate(180deg)}
-#room .beam{top:calc(6.5vh + 30px);bottom:auto;height:26vh;transform:translateX(-50%) rotate(180deg)}
-#room .b-hot{top:calc(6.5vh + 20px);bottom:auto}
+#room .proj{top:auto;bottom:calc(100% + var(--gap) - 6px);transform:translateX(-50%) rotate(180deg)}
+#room .beam{top:auto;bottom:calc(100% - 2px);height:var(--gap);transform:translateX(-50%) rotate(180deg)}
+#room .b-hot{top:auto;bottom:calc(100% + var(--gap) - 24px)}
 
 /* включение при скролле */
 #room .hframe{opacity:0}
@@ -408,10 +413,17 @@ a{color:inherit;text-decoration:none}
 /* табы внутри голограммы */
 .duo3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3vw;align-items:start}
 .tgroup{min-width:0}
-.tpanes{min-height:clamp(360px,48vh,620px);max-height:62vh;overflow-y:auto;padding-right:6px}
-.term-tabs{display:flex;border:1px solid rgba(120,230,255,.22);border-radius:8px;overflow:hidden;margin-bottom:20px}
-.tb{flex:1;padding:15px 10px;background:transparent;border:0;cursor:pointer;
-  font-family:"Orbitron";font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+.tpanes{min-height:clamp(360px,48vh,620px);max-height:62vh;overflow-y:auto;padding-right:14px;
+  scrollbar-width:thin;scrollbar-color:rgba(111,230,255,.55) rgba(8,22,34,.5)}
+.tpanes::-webkit-scrollbar{width:9px}
+.tpanes::-webkit-scrollbar-track{background:linear-gradient(180deg,rgba(8,22,34,.25),rgba(8,22,34,.6));
+  border:1px solid rgba(120,230,255,.16);border-radius:2px}
+.tpanes::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#8fe9ff,#3fc9e8);border-radius:2px;
+  box-shadow:0 0 10px rgba(111,230,255,.6),inset 0 0 4px rgba(255,255,255,.4)}
+.tpanes::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#bff4ff,#59d8f5)}
+.term-tabs{display:flex;border:1px solid rgba(120,230,255,.22);border-radius:8px;overflow:hidden;margin-bottom:26px}
+.tb{flex:1;padding:17px 10px;background:transparent;border:0;cursor:pointer;
+  font-family:"Orbitron";font-size:14px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
   color:#7fb6cc;transition:.25s}
 .tb+.tb{border-left:1px solid rgba(120,230,255,.16)}
 .tb:hover{color:#bfeeff;background:rgba(111,230,255,.06)}
@@ -424,37 +436,37 @@ a{color:inherit;text-decoration:none}
 .tline{position:relative;padding-left:26px}
 .tline::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;
   background:linear-gradient(180deg,#6fe6ff,rgba(111,230,255,.15))}
-.tl-i{position:relative;margin-bottom:28px}
+.tl-i{position:relative;margin-bottom:34px}
 .tl-i:last-child{margin-bottom:4px}
 .tl-i::before{content:"";position:absolute;left:-26px;top:7px;width:12px;height:12px;border-radius:50%;
   background:#6fe6ff;box-shadow:0 0 0 4px rgba(111,230,255,.16),0 0 12px #6fe6ff}
-.tl-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:9px}
-.tl-role{font-family:"Orbitron";font-size:17px;color:#eaf8ff;letter-spacing:.16em;text-transform:uppercase}
-.tl-date{font-size:13.5px;color:#7fa8bd;letter-spacing:.05em}
+.tl-top{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:baseline;margin-bottom:11px}
+.tl-role{font-family:"Orbitron";font-size:19px;color:#eaf8ff;letter-spacing:.16em;text-transform:uppercase}
+.tl-date{font-size:14px;color:#7fa8bd;letter-spacing:.05em}
 .tl-par{display:inline-block;margin-left:10px;padding:3px 8px;border-radius:4px;vertical-align:middle;
   font-family:"Orbitron";font-size:8.5px;font-weight:600;letter-spacing:.16em;color:#8fdcf5;
   border:1px solid rgba(120,230,255,.4);background:rgba(111,230,255,.07)}
-.tl-i p{font-size:15.5px;line-height:1.62;font-weight:300;color:#bcd8e6}
-.tl-sub{margin-top:12px;padding-left:16px;border-left:2px solid rgba(255,138,212,.45)}
+.tl-i p{font-size:16.5px;line-height:1.68;font-weight:300;color:#bcd8e6}
+.tl-sub{margin-top:16px;padding-left:18px;border-left:2px solid rgba(255,138,212,.45)}
 
 /* стек и «ещё умею» */
-.sk{display:grid;grid-template-columns:1fr 1fr;gap:26px 26px}
-.sk-g h4{font-family:"Orbitron";font-size:12.5px;letter-spacing:.2em;text-transform:uppercase;color:#6fe6ff;
-  margin-bottom:10px;padding-bottom:7px;border-bottom:1px solid rgba(120,230,255,.2)}
+.sk{display:grid;grid-template-columns:1fr 1fr;gap:30px 28px}
+.sk-g h4{font-family:"Orbitron";font-size:13.5px;letter-spacing:.2em;text-transform:uppercase;color:#6fe6ff;
+  margin-bottom:13px;padding-bottom:9px;border-bottom:1px solid rgba(120,230,255,.2)}
 .sk-g ul{list-style:none}
-.sk-g li{font-size:15px;color:#c2dbe8;font-weight:300;padding:6px 0 6px 16px;position:relative;line-height:1.45}
-.sk-g li::before{content:"";position:absolute;left:0;top:13px;width:5px;height:5px;border-radius:50%;
+.sk-g li{font-size:16px;color:#c9dfeb;font-weight:300;padding:8px 0 8px 17px;position:relative;line-height:1.5}
+.sk-g li::before{content:"";position:absolute;left:0;top:16px;width:5px;height:5px;border-radius:50%;
   background:rgba(111,230,255,.65);box-shadow:0 0 6px rgba(111,230,255,.5)}
 @media(max-width:900px){.sk{grid-template-columns:1fr}.duo3{grid-template-columns:1fr;gap:34px}.tpanes{min-height:0}}
 
 /* контакты */
-.cn{display:grid;grid-template-columns:1fr;gap:11px}
-.cn-i{display:flex;align-items:center;gap:16px;padding:17px 18px;text-decoration:none;border-radius:8px;
+.cn{display:grid;grid-template-columns:1fr;gap:13px}
+.cn-i{display:flex;align-items:center;gap:18px;padding:19px 20px;text-decoration:none;border-radius:8px;
   border:1px solid rgba(120,230,255,.22);background:rgba(111,230,255,.04);transition:.25s}
 .cn-i:hover{border-color:#6fe6ff;background:rgba(111,230,255,.1);transform:translateX(4px);
   box-shadow:0 0 18px rgba(111,230,255,.22)}
 .cn-k{font-family:"Orbitron";font-size:10.5px;font-weight:600;letter-spacing:.2em;color:#6fe6ff;min-width:86px}
-.cn-v{font-size:16.5px;color:#e6f6ff;letter-spacing:.02em}
+.cn-v{font-size:17.5px;color:#e6f6ff;letter-spacing:.02em}
 .cn-note{margin-top:10px;font-family:"Orbitron";font-size:11.5px;letter-spacing:.2em;
   text-transform:uppercase;color:#7f9fb0}
 @media(max-width:760px){.cn{grid-template-columns:1fr}}
@@ -656,28 +668,21 @@ a{color:inherit;text-decoration:none}
     </div>
         </div>
       </div>
+      <div class="beam" aria-hidden="true">
+        <div class="b-cone"></div>
+        <div class="b-inner"></div>
+        <div class="b-dust"></div>
+      </div>
+      <div class="b-hot" aria-hidden="true"></div>
+      <div class="b-pool" aria-hidden="true"></div>
+      <div class="proj" aria-hidden="true"><span class="lens"></span><span class="cord c1"></span><span class="cord c2"></span></div>
     </div>
-    <div class="beam" aria-hidden="true">
-      <div class="b-cone"></div>
-      <div class="b-inner"></div>
-      <div class="b-dust"></div>
-    </div>
-    <div class="b-hot" aria-hidden="true"></div>
-    <div class="b-pool" aria-hidden="true"></div>
-    <div class="proj" aria-hidden="true"><span class="lens"></span><span class="cord c1"></span><span class="cord c2"></span></div>
     <div id="seamFog" aria-hidden="true"></div>
   </section>
 
   <section id="room">
     <div class="room-hold"></div>
 
-    <div class="proj rev" aria-hidden="true"><span class="lens"></span><span class="cord c1"></span><span class="cord c2"></span></div>
-    <div class="b-hot rev" aria-hidden="true"></div>
-    <div class="beam rev" aria-hidden="true">
-      <div class="b-cone"></div>
-      <div class="b-inner"></div>
-      <div class="b-dust"></div>
-    </div>
 
     <div class="room-stage">
       <div class="stage">
@@ -811,6 +816,13 @@ a{color:inherit;text-decoration:none}
               </div>
             </div>
           </div>
+        </div>
+        <div class="proj rev" aria-hidden="true"><span class="lens"></span><span class="cord c1"></span><span class="cord c2"></span></div>
+        <div class="b-hot rev" aria-hidden="true"></div>
+        <div class="beam rev" aria-hidden="true">
+        <div class="b-cone"></div>
+        <div class="b-inner"></div>
+        <div class="b-dust"></div>
         </div>
       </div>
     </div>
@@ -1045,8 +1057,9 @@ document.querySelectorAll("#hot .spot").forEach(function(s){var l=s.querySelecto
   if(window.ResizeObserver){var ro=new ResizeObserver(draw);frames.forEach(function(f){ro.observe(f)});}
 })();
 
-/* параллакс перспективы голограмм */
+/* параллакс перспективы голограмм (только мышь) */
 (function(){
+  if(matchMedia("(hover:none),(pointer:coarse)").matches)return;
   var pairs=[[document.querySelector("#about .hframe"),document.getElementById("about")],
              [document.querySelector("#room .hframe"),document.getElementById("room")]];
   pairs.forEach(function(p){
