@@ -386,9 +386,9 @@ a{color:inherit;text-decoration:none}
 #room .hf-tag.lt{letter-spacing:.2em}
 
 /* устройство и луч — сверху вниз */
-#room .proj{top:2.4vh;bottom:auto;transform:translateX(-50%) rotate(180deg)}
-#room .beam{top:calc(2.4vh + 30px);bottom:auto;transform:translateX(-50%) rotate(180deg)}
-#room .b-hot{top:calc(2.4vh + 20px);bottom:auto}
+#room .proj{top:6.5vh;bottom:auto;transform:translateX(-50%) rotate(180deg)}
+#room .beam{top:calc(6.5vh + 30px);bottom:auto;height:26vh;transform:translateX(-50%) rotate(180deg)}
+#room .b-hot{top:calc(6.5vh + 20px);bottom:auto}
 
 /* включение при скролле */
 #room .hframe{opacity:0}
@@ -408,7 +408,7 @@ a{color:inherit;text-decoration:none}
 /* табы внутри голограммы */
 .duo3{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:3vw;align-items:start}
 .tgroup{min-width:0}
-.tpanes{min-height:clamp(360px,48vh,620px)}
+.tpanes{min-height:clamp(360px,48vh,620px);max-height:62vh;overflow-y:auto;padding-right:6px}
 .term-tabs{display:flex;border:1px solid rgba(120,230,255,.22);border-radius:8px;overflow:hidden;margin-bottom:20px}
 .tb{flex:1;padding:15px 10px;background:transparent;border:0;cursor:pointer;
   font-family:"Orbitron";font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
@@ -421,8 +421,8 @@ a{color:inherit;text-decoration:none}
 .tp.on{display:block;animation:bodyOn .5s ease both}
 
 /* опыт */
-.tl{position:relative;padding-left:26px}
-.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;
+.tline{position:relative;padding-left:26px}
+.tline::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;
   background:linear-gradient(180deg,#6fe6ff,rgba(111,230,255,.15))}
 .tl-i{position:relative;margin-bottom:28px}
 .tl-i:last-child{margin-bottom:4px}
@@ -738,7 +738,7 @@ a{color:inherit;text-decoration:none}
                 <button class="tb" data-t="stack" type="button">Стек</button>
               </div>
               <div class="tpanes">
-                <div class="tp on" data-p="exp"><div class="tl">
+                <div class="tp on" data-p="exp"><div class="tline">
               <div class="tl-i">
                 <div class="tl-top"><span class="tl-role">ONKRON</span><span class="tl-date">июль 2023 — н.в.</span></div>
                 <p>Витрины на Shopify (UK, DE): вёрстка и правки тем на Liquid, промо-блоки (подарки, копируемые промокоды), синхронизация остатков и складов, ускорение загрузки, контент-менеджмент. Плюс сайты и CRM-формы на Bitrix24 с разбором доставки лидов.</p>
@@ -959,19 +959,23 @@ document.querySelectorAll("#hot .spot").forEach(function(s){var l=s.querySelecto
   })();
 })();
 
-/* высота третьей рамы = высота второй (один в один) */
+/* обе голограммы одинаковой высоты */
 (function(){
   var a=document.querySelector("#about .hframe"), r=document.querySelector("#room .hframe");
   if(!a||!r)return;
+  var lock=false;
   function sync(){
-    r.style.minHeight="";
-    var hA=a.offsetHeight;
-    if(hA>0) r.style.minHeight=Math.min(hA,Math.round(innerHeight*0.86))+"px";
+    if(lock)return; lock=true;
+    a.style.minHeight=""; r.style.minHeight="";
+    var hA=a.offsetHeight, hB=r.offsetHeight;
+    var target=Math.min(Math.max(hA,hB), Math.round(innerHeight*0.86));
+    if(target>0){ a.style.minHeight=target+"px"; r.style.minHeight=target+"px"; }
+    lock=false;
   }
   sync();
   addEventListener("load",sync);
   addEventListener("resize",sync);
-  if(window.ResizeObserver) new ResizeObserver(sync).observe(a);
+  setTimeout(sync,600);
 })();
 
 /* терминал на столе: табы, часы, включение при скролле */
